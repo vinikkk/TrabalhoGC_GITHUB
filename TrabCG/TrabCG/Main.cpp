@@ -7,8 +7,6 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 
-//oioi
-
 // GLFW
 #include <GLFW/glfw3.h>
 
