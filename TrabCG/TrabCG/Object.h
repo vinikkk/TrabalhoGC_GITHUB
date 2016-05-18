@@ -4,7 +4,7 @@
 #include "Mesh.h"
 #include "Shader.h"
 
-class Object
+class Model
 {
 public:
 	//DATA
@@ -12,11 +12,12 @@ public:
 	Shader shader;
 	
 	//FUNCTIONS
-	Object();
-	~Object(GLchar* path) { this->loadModel(path); };
+	Model();
+	~Model(GLchar* path) { this->loadModel(path); };
 	void Draw();
 	
 private:
+	string objectMeshPath
 	vector<Mesh> meshes;
 	string directory;
         void loadModel(string path);
