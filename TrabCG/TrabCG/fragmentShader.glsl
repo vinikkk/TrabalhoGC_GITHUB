@@ -1,5 +1,3 @@
-
-
 #version 330 core
 struct Material {
     sampler2D diffuse;
@@ -63,6 +61,7 @@ void main()
     diffuse  *= attenuation;
     specular *= attenuation;   
             
-    color = vec4(ambient + diffuse + specular, 1.0f);  
+    //color = vec4(ambient + diffuse + specular, 1.0f);  
+	color = vec4(specular, 1.0f); 
 } 
 

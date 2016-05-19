@@ -1,35 +1,54 @@
 #include "Model.h"
 
-Model::Model()
+Model::Model(GLchar* path)
 {
+	//this->loadModel(path);
 }
 
 Model::~Model()
 {
 }
 
-void Draw(Shader shader)
+void Model::Draw(Shader shader)
 {
-    for(GLuint i = 0; i < this->meshes.size(); i++)
-        this->meshes[i].Draw(shader);
+    //for(GLuint i = 0; i < this->meshes.size(); i++)
+        //this->meshes[i].Draw(shader);
 }  
 
-void loadModel(string path)
+void Model::loadModel(string path)
 {
-    Assimp::Importer import;
-    const aiScene* scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
-	
-    if(!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) 
-    {
-        cout << "ERROR::ASSIMP::" << import.GetErrorString() << endl;
-        return;
-    }
-    this->directory = path.substr(0, path.find_last_of('/'));
-    
-    this->processNode(scene->mRootNode, scene);
+	ifstream inFile;
+	inFile.open(path);
+
+	//SET TEMPORARY VECTORS
+	vector<Vertex> temp_vertices;
+	vector<vec2> temp_texCoords;
+	vector<vec3> temp_verticeNormal;
+
+	GLchar input[32];
+	GLchar line[256];
+
+	while (!inFile.eof())
+	{
+		inFile.get(input, 32);
+		
+		if ((string)input == "#")
+		{
+			inFile.getline(line, 256);
+		}
+		else if ((string)input == "v")
+		{
+
+		}
+
+
+	}
+
+
+    //this->directory = path.substr(0, path.find_last_of('/'));
 }
 
-void processNode(aiNode* node, const aiScene* scene)
+/*void Model::processNode(aiNode* node, const aiScene* scene)
 {
     // Process all the node's meshes (if any)
     for(GLuint i = 0; i < node->mNumMeshes; i++)
@@ -44,9 +63,9 @@ void processNode(aiNode* node, const aiScene* scene)
     }
 } 
 
-Mesh processMesh(aiMesh* mesh, const aiScene* scene)
+Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 {
-    vector<Vertex> vertices;
+    /*vector<Vertex> vertices;
     vector<GLuint> indices;
     vector<Texture> textures;
 
@@ -54,7 +73,7 @@ Mesh processMesh(aiMesh* mesh, const aiScene* scene)
     {
         Vertex vertex;
         // Process vertex positions, normals and texture coordinates
-        ...
+        //...
         vertices.push_back(vertex);
     }
     // Process indices
@@ -66,4 +85,4 @@ Mesh processMesh(aiMesh* mesh, const aiScene* scene)
     }
 
     return Mesh(vertices, indices, textures);
-} 
+} */
