@@ -2,7 +2,7 @@
 
 Model::Model(GLchar* path)
 {
-	//this->loadModel(path);
+	this->loadModel(path);
 }
 
 Model::~Model()
@@ -11,8 +11,8 @@ Model::~Model()
 
 void Model::Draw(Shader shader)
 {
-    //for(GLuint i = 0; i < this->meshes.size(); i++)
-        //this->meshes[i].Draw(shader);
+    for(GLuint i = 0; i < this->meshes.size(); i++)
+        this->meshes[i].Draw(shader);
 }  
 
 void Model::loadModel(string path)
@@ -21,68 +21,96 @@ void Model::loadModel(string path)
 	inFile.open(path);
 
 	//SET TEMPORARY VECTORS
-	vector<Vertex> temp_vertices;
+	vector<vec3> temp_vertices;
 	vector<vec2> temp_texCoords;
 	vector<vec3> temp_verticeNormal;
+	vector<GLuint> indices;
+	vector<Vertex> final_vertices;
 
 	GLchar input[32];
-	GLchar line[256];
 
 	while (!inFile.eof())
 	{
-		inFile.get(input, 32);
+		inFile >> input;
 		
-		if ((string)input == "#")
+		if ((string)input == "v")
 		{
-			inFile.getline(line, 256);
+			vec3 vertice;
+
+			inFile >> input;
+			vertice.x = stof(input);
+			inFile >> input;
+			vertice.y = stof(input);
+			inFile >> input;
+			vertice.z = stof(input);
+
+			temp_vertices.push_back(vertice);
 		}
-		else if ((string)input == "v")
+		else if ((string)input == "vt")
 		{
+			vec2 texCoord;
 
+			inFile >> input;
+			texCoord.x = stof(input);
+			inFile >> input;
+			texCoord.y = stof(input);
+
+			temp_texCoords.push_back(texCoord);
 		}
+		else if ((string)input == "vn")
+		{
+			vec3 verticeNormal;
 
+			inFile >> input;
+			verticeNormal.x = stof(input);
+			inFile >> input;
+			verticeNormal.y = stof(input);
+			inFile >> input;
+			verticeNormal.z = stof(input);
 
+			temp_verticeNormal.push_back(verticeNormal);
+		}
+		else if ((string)input == "f")
+		{
+			while (true)
+			{
+				GLint verticeIndex, texCoordIndex, vertexNormalIndex;
+
+				string auxString;
+
+				Vertex vertice;
+
+				inFile >> input;
+
+				if ((string)input == "")
+				{
+					break;
+				}
+				else if ((string)input == "f")
+				{
+					inFile.unget();
+					break;
+				}
+
+				auxString = (string)input;
+
+				verticeIndex = stoi(auxString.substr(0, auxString.find_first_of('/'))) - 1;
+				auxString = auxString.substr(auxString.find_first_of('/') + 1);
+				texCoordIndex = stoi(auxString.substr(0, auxString.find_first_of('/'))) - 1;
+				auxString = auxString.substr(auxString.find_first_of('/') + 1);
+				vertexNormalIndex = stoi(auxString) - 1;
+
+				vertice.Position = temp_vertices[verticeIndex];
+				vertice.TexCoords = temp_texCoords[texCoordIndex];
+				vertice.Normal = temp_verticeNormal[vertexNormalIndex];
+
+				final_vertices.push_back(vertice);
+			}
+		}
 	}
 
+	this->directory = path.substr(0, path.find_last_of('/'));
 
-    //this->directory = path.substr(0, path.find_last_of('/'));
+	vector<Texture> textures;
+	this->meshes.push_back(Mesh(final_vertices, textures));
 }
-
-/*void Model::processNode(aiNode* node, const aiScene* scene)
-{
-    // Process all the node's meshes (if any)
-    for(GLuint i = 0; i < node->mNumMeshes; i++)
-    {
-        aiMesh* mesh = scene->mMeshes[node->mMeshes[i]]; 
-        this->meshes.push_back(this->processMesh(mesh, scene));			
-    }
-    // Then do the same for each of its children
-    for(GLuint i = 0; i < node->mNumChildren; i++)
-    {
-        this->processNode(node->mChildren[i], scene);
-    }
-} 
-
-Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
-{
-    /*vector<Vertex> vertices;
-    vector<GLuint> indices;
-    vector<Texture> textures;
-
-    for(GLuint i = 0; i < mesh->mNumVertices; i++)
-    {
-        Vertex vertex;
-        // Process vertex positions, normals and texture coordinates
-        //...
-        vertices.push_back(vertex);
-    }
-    // Process indices
-    ...
-    // Process material
-    if(mesh->mMaterialIndex >= 0)
-    {
-        ...
-    }
-
-    return Mesh(vertices, indices, textures);
-} */

@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 #include <iostream>
 #include <cmath>
 
@@ -25,9 +23,9 @@
 
 
 struct Vertex {
-    glm::vec3 Position;
-    glm::vec3 Normal;
-    glm::vec2 TexCoords;
+    vec3 Position;
+    vec3 Normal;
+    vec2 TexCoords;
 };
 
 struct Texture {
@@ -39,14 +37,14 @@ class Mesh {
     public:
         /*  Mesh Data  */
         vector<Vertex> vertices;
-        vector<GLuint> indices;
+        //vector<GLuint> indices;
         vector<Texture> textures;
         /*  Functions  */
-        Mesh(vector<Vertex> _vertices, vector<GLuint> _indices, vector<Texture> _textures);
+        Mesh(vector<Vertex> _vertices, vector<Texture> _textures);
         void Draw(Shader shader);
     private:
         /*  Render data  */
-        GLuint VAO, VBO, EBO;
+        GLuint VAO, VBO;
         /*  Functions    */
         void setupMesh();
 }; 
