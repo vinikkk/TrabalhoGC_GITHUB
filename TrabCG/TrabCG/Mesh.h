@@ -37,7 +37,6 @@ class Mesh {
     public:
         /*  Mesh Data  */
         vector<Vertex> vertices;
-        //vector<GLuint> indices;
         vector<Texture> textures;
         /*  Functions  */
         Mesh(vector<Vertex> _vertices, vector<Texture> _textures);

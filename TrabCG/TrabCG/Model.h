@@ -43,6 +43,5 @@ private:
 	vector<Mesh> meshes;
 	string directory;
     void loadModel(string path);
-	//bool loadObj(const GLchar * path,	vector<vec3> &out_vertices, vector<vec2> &out_uvs, vector<vec3> &out_normals);
 };
 

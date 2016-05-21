@@ -20,7 +20,6 @@
 #include "Camera.h"
 #include "Model.h"
 
-
 // Function prototypes
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -84,7 +83,7 @@ int main()
 	Model cubo("cube.obj");
 
 	// Draw in wireframe
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	// Game loop
 	while (!glfwWindowShouldClose(window))
