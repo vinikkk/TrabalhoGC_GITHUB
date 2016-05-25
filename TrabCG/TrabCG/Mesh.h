@@ -38,6 +38,7 @@ class Mesh {
         /*  Mesh Data  */
         vector<Vertex> vertices;
         vector<Texture> textures;
+		vector<GLuint> textureList;
         /*  Functions  */
         Mesh(vector<Vertex> _vertices, vector<Texture> _textures);
         void Draw(Shader shader);

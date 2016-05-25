@@ -76,6 +76,9 @@ int main()
 	// OpenGL options
 	glEnable(GL_DEPTH_TEST);
 
+	// Enables Textures
+	glEnable(GL_TEXTURE_2D);
+
 	// Build and compile our shader program
 	Shader lightingShader("vertexShader.vs", "fragmentShader.fs");
 	Shader lampShader("lamp.vs", "lamp.fs");

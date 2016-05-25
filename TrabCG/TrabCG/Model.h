@@ -43,5 +43,9 @@ private:
 	vector<Mesh> meshes;
 	string directory;
     void loadModel(string path);
+
+	void LoadTexture(const GLchar * path);
+
+	void LoadTextures(const char* path);
 };
 

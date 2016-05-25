@@ -12,7 +12,7 @@ void Mesh::Draw(Shader shader)
 {
 	GLuint diffuseNr = 1;
 	GLuint specularNr = 1;
-	for (GLuint i = 0; i < this->textures.size(); i++)
+	/*for (GLuint i = 0; i < this->textures.size(); i++)
 	{
 		glActiveTexture(GL_TEXTURE0 + i); // Activate proper texture unit before binding
 										  // Retrieve texture number (the N in diffuse_textureN)
@@ -28,7 +28,11 @@ void Mesh::Draw(Shader shader)
 		glUniform1f(glGetUniformLocation(shader.Program, ("material." + name + number).c_str()), i);
 		glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
 	}
+	glActiveTexture(GL_TEXTURE0);*/
+
 	glActiveTexture(GL_TEXTURE0);
+	glUniform1f(glGetUniformLocation(shader.Program, "ourTexture"), 0);
+	glBindTexture(GL_TEXTURE_2D, textureList[0]);
 
 	// Draw mesh
 	glBindVertexArray(this->VAO);
