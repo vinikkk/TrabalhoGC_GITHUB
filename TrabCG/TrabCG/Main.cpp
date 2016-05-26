@@ -42,13 +42,14 @@ vec3 lightPos(1.2f, 1.0f, 2.0f);
 GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
 
-							// The MAIN function, from here we start the application and run the game loop
+vector<Model> sceneObjects;
+
 int main()
 {
 	// Init GLFW
 	glfwInit();
 	// Set all the required options for GLFW
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
@@ -81,9 +82,9 @@ int main()
 
 	// Build and compile our shader program
 	Shader lightingShader("vertexShader.vs", "fragmentShader.fs");
-	Shader lampShader("lamp.vs", "lamp.fs");
 
 	Model cubo("cube.obj");
+	sceneObjects.push_back(cubo);
 
 	// Draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -104,8 +105,13 @@ int main()
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		for each (Model model in sceneObjects)
+		{
+			model.ActiveTextures(lightingShader);
+		}
+
 		// Use cooresponding shader when setting uniforms/drawing objects
-		lightingShader.Use();
+		//lightingShader.Use();
 
 		// Create camera transformations
 		mat4 view;
@@ -116,11 +122,15 @@ int main()
 		glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "projection"), 1, GL_FALSE, value_ptr(projection));
 
 		// Draw the loaded model
-		mat4 model;
-		model = translate(model, vec3(0.0f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
-		model = scale(model, vec3(0.2f, 0.2f, 0.2f));	// It's a bit too big for our scene, so scale it down
-		glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, value_ptr(model));
-		cubo.Draw(lightingShader);
+		//mat4 model;
+		//model = translate(model, vec3(0.0f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+		//model = scale(model, vec3(0.2f, 0.2f, 0.2f));	// It's a bit too big for our scene, so scale it down
+		//glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, value_ptr(model));
+		
+		for each (Model m in sceneObjects)
+		{
+			m.Draw(lightingShader);
+		}
 
 		// Swap the screen buffers
 		glfwSwapBuffers(window);

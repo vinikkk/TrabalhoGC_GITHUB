@@ -37,6 +37,7 @@ public:
 	Model(GLchar* path);
 	~Model();
 	void Draw(Shader shader);
+	void ActiveTextures(Shader shader);
 	
 private:
 	string objectMeshPath;

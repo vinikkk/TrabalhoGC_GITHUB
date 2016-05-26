@@ -10,29 +10,7 @@ Mesh::Mesh(vector<Vertex> _vertices, vector<Texture> _textures)
 
 void Mesh::Draw(Shader shader)
 {
-	GLuint diffuseNr = 1;
-	GLuint specularNr = 1;
-	/*for (GLuint i = 0; i < this->textures.size(); i++)
-	{
-		glActiveTexture(GL_TEXTURE0 + i); // Activate proper texture unit before binding
-										  // Retrieve texture number (the N in diffuse_textureN)
-		stringstream ss;
-		string number;
-		string name = this->textures[i].type;
-		if (name == "texture_diffuse")
-			ss << diffuseNr++; // Transfer GLuint to stream
-		else if (name == "texture_specular")
-			ss << specularNr++; // Transfer GLuint to stream
-		number = ss.str();
-
-		glUniform1f(glGetUniformLocation(shader.Program, ("material." + name + number).c_str()), i);
-		glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
-	}
-	glActiveTexture(GL_TEXTURE0);*/
-
-	glActiveTexture(GL_TEXTURE0);
-	glUniform1f(glGetUniformLocation(shader.Program, "ourTexture"), 0);
-	glBindTexture(GL_TEXTURE_2D, textureList[0]);
+	shader.Use();
 
 	// Draw mesh
 	glBindVertexArray(this->VAO);
@@ -61,4 +39,22 @@ void Mesh::setupMesh()
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, TexCoords));
 
 	glBindVertexArray(0); // Unbind VAO
+
+	//SETUP TEXTURES
+	GLuint texture;
+	textureList.push_back(texture);
+	GLint texId = textureList.size() - 1;
+
+	glGenTextures(1, &textureList[texId]);
+	glBindTexture(GL_TEXTURE_2D, textureList[texId]);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	// Load, create texture and generate mipmaps
+	int width, height;
+	unsigned char* image = SOIL_load_image("cube_diffuse.png", &width, &height, 0, SOIL_LOAD_RGB);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(image);
+	glBindTexture(GL_TEXTURE_2D, 0);
 }

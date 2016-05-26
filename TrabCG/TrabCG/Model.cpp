@@ -3,7 +3,7 @@
 Model::Model(GLchar* path)
 {
 	this->loadModel(path);
-	this->LoadTexture("cube_diffuse.png");
+	//this->LoadTexture("cube_diffuse.png");
 }
 
 Model::~Model()
@@ -14,7 +14,20 @@ void Model::Draw(Shader shader)
 {
     for(GLuint i = 0; i < this->meshes.size(); i++)
         this->meshes[i].Draw(shader);
-}  
+}
+
+void Model::ActiveTextures(Shader shader)
+{
+	for each (Mesh m in meshes)
+	{
+		for (GLint i = 0; i < m.textureList.size(); i++)
+		{
+			glActiveTexture(GL_TEXTURE + i);
+			glBindTexture(GL_TEXTURE_2D, m.textureList[i]);
+			glUniform1i(glGetUniformLocation(shader.Program, "diffuse"), i);
+		}
+	}
+}
 
 void Model::loadModel(string path)
 {

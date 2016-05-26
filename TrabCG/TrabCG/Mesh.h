@@ -33,6 +33,10 @@ struct Texture {
     string type;
 }; 
 
+struct Material {
+	GLuint diffuse;
+};
+
 class Mesh {
     public:
         /*  Mesh Data  */
