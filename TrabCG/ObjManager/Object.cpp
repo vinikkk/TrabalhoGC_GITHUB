@@ -111,7 +111,7 @@ void Object::loadMeshes(string path)
 
 				vertice.Position = temp_vertices[verticeIndex];
 				vertice.TexCoords = temp_texCoords[texCoordIndex];
-				vertice.Normal = temp_verticeNormal[vertexNormalIndex];
+				//vertice.Normal = temp_verticeNormal[vertexNormalIndex];
 
 				final_vertices.push_back(vertice);
 			}

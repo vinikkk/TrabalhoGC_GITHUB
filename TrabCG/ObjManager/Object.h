@@ -29,8 +29,10 @@ public:
 	
 	//DATA
 	string objectName;
+	vec3 baseColor;
 	vec3 worldPosition;
 	vector<Mesh> meshList;
+	vector<GLuint> textures;
 	Shader *shader;
 
 	Object(GLchar* path);
@@ -39,7 +41,8 @@ public:
 	void Draw();
 
 	void setShader(Shader *shader) { this->shader = shader; };
-	void setWorldPosition(vec3 wP) { worldPosition = wP; };
+	void setWorldPosition(vec3 wP) { this->worldPosition = wP; };
+	void setBaseColor(vec3 bColor) { this->baseColor = bColor; };
 
 protected:
 	string directory;

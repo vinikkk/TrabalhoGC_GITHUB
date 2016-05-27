@@ -24,19 +24,23 @@
 
 struct Vertex {
 	vec3 Position;
-	vec3 Normal;
+	//vec3 Normal;
 	vec2 TexCoords;
 };
 
 class Mesh {
 public:
 	
+	vec3 baseColor;
 	vector<Vertex> vertices;
 	vector<GLuint> textures;
+	GLuint textureID;
 	
-	Mesh(string objName, vector<Vertex> _vertices);
+	Mesh(string objName, vector<Vertex> vertices);
 	void Draw(vec3 wPosition,Shader * shader);
+
 private:
 	GLuint VAO, VBO;
+	void generateTexture();
 	void setupMesh(string objName);
 };

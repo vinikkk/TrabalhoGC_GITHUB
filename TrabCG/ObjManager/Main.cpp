@@ -80,40 +80,19 @@ int main()
 	// OpenGL options
 	glEnable(GL_DEPTH_TEST);
 
-	// Enables Textures
 	glEnable(GL_TEXTURE_2D);
 
 	// Build and compile our shader program
 	Shader lightingShader("vertexShader.vs", "fragmentShader.fs");
-
+	
 	Object cubo("cube.obj");
 	cubo.setShader(&lightingShader);
 	cubo.setWorldPosition(vec3(0.0f, -2.0f, -3.0f));
+	cubo.setBaseColor(vec3(0.5f, 0.5f, 0.0f));
 	sceneObjects.push_back(cubo);
 
 	// Draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	GLuint texture;
-	// ====================
-	// Texture 1
-	// ====================
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture); // All upcoming GL_TEXTURE_2D operations now have effect on our texture object
-										   // Set our texture parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	// Set texture filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	// Load, create texture and generate mipmaps
-	int width, height;
-	unsigned char* image = SOIL_load_image("cube_diffuse.png", &width, &height, 0, SOIL_LOAD_RGB);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-	SOIL_free_image_data(image);
-	glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
 
 	// Game loop
 	while (!glfwWindowShouldClose(window))
@@ -131,13 +110,6 @@ int main()
 		glClearColor(0.6f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// Use cooresponding shader when setting uniforms/drawing objects
-		lightingShader.Use();
-
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture);
-		glUniform1i(glGetUniformLocation(lightingShader.Program, "diffuse"), 0);
-
 		// Create camera transformations
 		mat4 view;
 		view = camera.GetViewMatrix();
@@ -148,6 +120,7 @@ int main()
 
 		for each (Object obj in sceneObjects)
 		{
+			//glUniform3f(glGetUniformLocation(lightingShader.Program, "Color"), obj.baseColor.x, obj.baseColor.y, obj.baseColor.z);
 			obj.Draw();
 		}
 

@@ -1,24 +1,32 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include <string>
-#include <fstream>
-#include <sstream>
 #include <iostream>
-
-#include <GL/glew.h>; // Include glew to get all the required OpenGL headers
-
-using namespace std;
+#include <string>
+#include <GL/glew.h>
+#include <fstream>
 
 class Shader
 {
 public:
-	// The program ID
-	GLuint Program;
-	// Constructor reads and builds the shader
-	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);
-	// Use the program
-	void Use();
+	Shader(const std::string& fileName);
+
+	void Bind();
+
+	virtual ~Shader();
+protected:
+private:
+	static const unsigned int NUM_SHADER = 2;
+	Shader(const Shader& other) {};
+	void operator=(const Shader& other) {};
+
+	void CheckShaderError(GLuint shader, GLuint flag, bool isProgram, const std::string& errorMessage);
+	std::string LoadShader(const std::string& fileName);
+	GLuint CreateShader(const std::string& text, unsigned int type);
+
+	GLuint m_program;
+	GLuint m_shaders[NUM_SHADER];
 };
 
-#endif
+#endif //SHADER_H
+
