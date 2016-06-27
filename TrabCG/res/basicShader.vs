@@ -1,17 +1,20 @@
-#version 120
+#version 330
 
-attribute vec3 position;
-attribute vec2 texCoord;
-attribute vec3 normal;
+layout (location = 0) in vec3 Position;
+layout (location = 1) in vec2 TexCoord;
+layout (location = 2) in vec3 Normal;
 
-varying vec2 texCoord0;
-varying vec3 normal0;
+out vec3 fragPos;
+out vec2 texCoord;
+out vec3 normal;
 
 uniform mat4 transform;
 
 void main()
 {
-	gl_Position = transform * vec4(position, 1.0);
-	texCoord0 = texCoord;
-	normal0 = (transform * vec4(normal, 0.0)).xyz;
+	gl_Position = transform * vec4(Position, 1.0);
+	fragPos = vec3(transform * vec4(Position, 1.0));
+	texCoord = TexCoord;
+	
+	normal = (transform * vec4(Normal, 0.0)).xyz;
 }

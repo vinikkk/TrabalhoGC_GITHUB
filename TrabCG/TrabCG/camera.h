@@ -18,6 +18,8 @@ public:
 	inline glm::mat4 GetViewProjection() const {
 		return m_perspective * glm::lookAt(m_position, m_position + m_forward, m_up);
 	};
+
+	glm::vec3 position() { return m_position; };
 protected:
 private:
 	glm::mat4 m_perspective;

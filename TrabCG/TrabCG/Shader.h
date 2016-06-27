@@ -15,6 +15,7 @@ public:
 
 	void Bind();
 	void Update(const Transform& transform, const Camera& camera);
+	GLuint Program() { return m_program; };
 
 	virtual ~Shader();
 protected:

@@ -56,11 +56,17 @@ int main(int argc, char** argv)
 		display.Clear(0.2f, 0.5f, 0.0f, 1.0f);
 
 		transform.SetPos(glm::vec3(0.7,0,0));
-		transform.GetRot().x = sin(counter);
-		transform.GetRot().y = counter;
+		//transform.GetRot().x = sin(counter);
+		//transform.GetRot().y = counter;
 		transform.SetScale(glm::vec3(0.4));
 
 		shader.Bind();
+
+		glm::vec3 lightPos(sin(counter), -cos(counter), 2.0f);
+		glUniform3f(glGetUniformLocation(shader.Program(), "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+		glUniform1f(glGetUniformLocation(shader.Program(), "ambientStrength"), 1.0);
+		glUniform3f(glGetUniformLocation(shader.Program(), "lightColor"), 1.0, 1.0, 1.0);
+		glUniform3f(glGetUniformLocation(shader.Program(), "cameraPos"), camera.position().x, camera.position().y, camera.position().z);
 
 		texture2.Bind(0);
 		shader.Update(transform, camera);

@@ -1,0 +1,4 @@
+﻿  Main.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(61): warning C4305: 'argument': truncation from 'double' to 'const float'
+  TrabCG.vcxproj -> C:\Users\Fernanda\Documents\GitHub\TrabalhoGC_GITHUB\TrabCG\Debug\TrabCG.exe
+  TrabCG.vcxproj -> C:\Users\Fernanda\Documents\GitHub\TrabalhoGC_GITHUB\TrabCG\Debug\TrabCG.pdb (Partial PDB)
