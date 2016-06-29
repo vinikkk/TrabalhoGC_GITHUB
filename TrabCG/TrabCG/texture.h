@@ -1,6 +1,7 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
+#include "shader.h"
 #include <string>
 #include <GL/glew.h>
 
@@ -10,6 +11,9 @@ public:
 	Texture(const std::string& fileName);
 
 	void Bind(unsigned int unit);
+	void Bind(unsigned int unit, Shader& shader);
+
+	void Unbind();
 
 	virtual ~Texture();
 protected:
@@ -18,6 +22,7 @@ private:
 	void operator=(const Texture& texture) {};
 
 	GLuint m_texture;
+	GLuint m_unit;
 };
 
 #endif //TEXTURE_H

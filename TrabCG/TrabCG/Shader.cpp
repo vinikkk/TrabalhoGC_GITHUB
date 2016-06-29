@@ -32,6 +32,7 @@ void Shader::Update(const Transform& transform, const Camera& camera)
 {
 	glm::mat4 model = camera.GetViewProjection() * transform.GetModel();
 
+	glUniformMatrix4fv(m_uniforms[MODEL_U], 1, GL_FALSE, &transform.GetModel()[0][0]);
 	glUniformMatrix4fv(m_uniforms[TRANSFORM_U], 1, GL_FALSE, &model[0][0]);
 }
 

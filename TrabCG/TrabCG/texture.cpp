@@ -33,6 +33,35 @@ void Texture::Bind(unsigned int unit)
 	glBindTexture(GL_TEXTURE_2D, m_texture);
 }
 
+void Texture::Bind(unsigned int unit, Shader& shader)
+{
+	//assert(unit >= 0 && unit <= 31);
+	m_unit = unit;
+
+	std::string location;
+
+	switch (unit)
+	{
+	case 0:
+		location = "material.diffuse";
+		break;
+	case 1:
+		location = "material.specular";
+		break;
+	}
+
+	glUniform1i(glGetUniformLocation(shader.Program(), location.c_str()), m_unit);
+
+	glActiveTexture(GL_TEXTURE0 + m_unit);
+	glBindTexture(GL_TEXTURE_2D, m_texture);
+}
+
+void Texture::Unbind()
+{
+	glActiveTexture(GL_TEXTURE0 + m_unit);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 Texture::~Texture()
 {
 	glDeleteTextures(1, &m_texture);
