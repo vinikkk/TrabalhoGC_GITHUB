@@ -8,10 +8,11 @@
 class Texture
 {
 public:
+	Texture() {};
 	Texture(const std::string& fileName);
 
 	void Bind(unsigned int unit);
-	void Bind(unsigned int unit, Shader& shader);
+	void Bind(unsigned int unit, Shader* shader);
 
 	void Unbind();
 

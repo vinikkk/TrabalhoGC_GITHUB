@@ -29,14 +29,16 @@ void Texture::Bind(unsigned int unit)
 {
 	//assert(unit >= 0 && unit <= 31);
 
-	glActiveTexture(GL_TEXTURE0 + unit);
-	glBindTexture(GL_TEXTURE_2D, m_texture);
+	this->m_unit = unit;
+
+	glActiveTexture(GL_TEXTURE0 + this->m_unit);
+	glBindTexture(GL_TEXTURE_2D, this->m_texture);
 }
 
-void Texture::Bind(unsigned int unit, Shader& shader)
+void Texture::Bind(unsigned int unit, Shader* shader)
 {
 	//assert(unit >= 0 && unit <= 31);
-	m_unit = unit;
+	this->m_unit = unit;
 
 	std::string location;
 
@@ -50,19 +52,19 @@ void Texture::Bind(unsigned int unit, Shader& shader)
 		break;
 	}
 
-	glUniform1i(glGetUniformLocation(shader.Program(), location.c_str()), m_unit);
+	glUniform1i(glGetUniformLocation(shader->Program(), location.c_str()), this->m_unit);
 
-	glActiveTexture(GL_TEXTURE0 + m_unit);
-	glBindTexture(GL_TEXTURE_2D, m_texture);
+	glActiveTexture(GL_TEXTURE0 + this->m_unit);
+	glBindTexture(GL_TEXTURE_2D, this->m_texture);
 }
 
 void Texture::Unbind()
 {
-	glActiveTexture(GL_TEXTURE0 + m_unit);
+	glActiveTexture(GL_TEXTURE0 + this->m_unit);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 Texture::~Texture()
 {
-	glDeleteTextures(1, &m_texture);
+	glDeleteTextures(1, &this->m_texture);
 }

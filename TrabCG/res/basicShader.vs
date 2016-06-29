@@ -8,13 +8,19 @@ out vec3 fragPos;
 out vec2 texCoord;
 out vec3 normal;
 
-uniform mat4 transform;
+uniform mat4 Transform;
+uniform mat4 Model;
 
+out mat4 transform;
+out mat4 model;
 void main()
 {
-	gl_Position = transform * vec4(Position, 1.0);
-	fragPos = vec3(transform * vec4(Position, 1.0));
+	gl_Position = Transform * vec4(Position, 1.0);
+	fragPos = vec3(Transform * vec4(Position, 1.0));
 	texCoord = TexCoord;
 	
-	normal = (transform * vec4(Normal, 0.0)).xyz;
+	normal = (Transform * vec4(Normal, 0.0)).xyz;
+	
+	transform = Transform;
+	model = Model;
 }

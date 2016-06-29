@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <GL/glew.h>
+#include <GLM/gtc/matrix_transform.hpp>
+#include <GLM/gtc/type_ptr.hpp>
 #include <fstream>
 #include "transform.h"
 #include "camera.h"
@@ -11,6 +13,7 @@
 class Shader
 {
 public:
+	Shader() {};
 	Shader(const std::string& fileName);
 
 	void Bind();
