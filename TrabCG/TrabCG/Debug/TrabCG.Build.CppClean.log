@@ -3,7 +3,9 @@ c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\vc140.i
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\asset.obj
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\camera.obj
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\display.obj
-c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\main.obj
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\interface.obj
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\lbutton.obj
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\ltexture.obj
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\manager.obj
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\material.obj
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\mesh.obj
@@ -11,11 +13,13 @@ c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\noiseut
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\obj_loader.obj
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\shader.obj
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\texture.obj
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\texturegenerator.obj
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\transform.obj
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\main.obj
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\stb_image.obj
-c:\users\fernanda\documents\github\trabalhogc_github\trabcg\debug\trabcg.ilk
-c:\users\fernanda\documents\github\trabalhogc_github\trabcg\debug\trabcg.exe
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\button.obj
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\debug\trabcg.pdb
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\debug\trabcg.ilk
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\trabcg.tlog\cl.command.1.tlog
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\trabcg.tlog\cl.read.1.tlog
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\debug\trabcg.tlog\cl.write.1.tlog

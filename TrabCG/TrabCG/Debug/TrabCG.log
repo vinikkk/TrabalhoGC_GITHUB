@@ -1,5 +1,15 @@
-﻿  Main.cpp
+﻿  display.cpp
+  Main.cpp
 c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\noiseutils.h(1217): warning C4244: 'initializing': conversion from 'const double' to 'float', possible loss of data
-c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(107): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(65): warning C4244: '=': conversion from 'GLuint' to 'GLfloat', possible loss of data
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(68): warning C4244: 'initializing': conversion from 'GLint' to 'GLfloat', possible loss of data
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(69): warning C4244: 'initializing': conversion from 'GLint' to 'GLfloat', possible loss of data
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(167): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(192): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(193): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(194): warning C4244: '=': conversion from 'double' to 'GLint', possible loss of data
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(195): warning C4244: '=': conversion from 'double' to 'GLint', possible loss of data
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(197): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+  Generating Code...
   TrabCG.vcxproj -> C:\Users\Fernanda\Documents\GitHub\TrabalhoGC_GITHUB\TrabCG\Debug\TrabCG.exe
   TrabCG.vcxproj -> C:\Users\Fernanda\Documents\GitHub\TrabalhoGC_GITHUB\TrabCG\Debug\TrabCG.pdb (Partial PDB)

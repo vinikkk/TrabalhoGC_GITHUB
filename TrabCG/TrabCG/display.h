@@ -13,6 +13,8 @@ public:
 	void SwapBuffers();
 
 	virtual ~Display();
+	SDL_Surface* loadSurface(std::string path);
+	bool loadMedia();
 
 protected:
 private:
@@ -21,6 +23,8 @@ private:
 
 	SDL_Window* m_window;
 	SDL_GLContext m_glContext;
+	SDL_Surface* m_screenSurface;
+	SDL_Surface* gPNGSurface = NULL;
 };
 
 #endif // DISPLAY_H

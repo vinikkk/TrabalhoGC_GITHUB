@@ -1,0 +1,29 @@
+﻿  transform.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\transform.h(4): fatal error C1083: Cannot open include file: 'GLM/glm.hpp': No such file or directory
+  TextureGenerator.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\texturegenerator.h(6): fatal error C1083: Cannot open include file: 'NOISE/noise.h': No such file or directory
+  texture.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\shader.h(6): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  shader.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\shader.h(6): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  obj_loader.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\obj_loader.h(12): fatal error C1083: Cannot open include file: 'GLM/glm.hpp': No such file or directory
+  noiseutils.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\noiseutils.cpp(25): fatal error C1083: Cannot open include file: 'noise/interp.h': No such file or directory
+  mesh.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\mesh.h(4): fatal error C1083: Cannot open include file: 'GLM/glm.hpp': No such file or directory
+  Material.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\shader.h(6): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  Manager.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\manager.h(5): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  Main.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\main.cpp(12): fatal error C1083: Cannot open include file: 'NOISE/noise.h': No such file or directory
+  Interface.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\kiss_sdl.h(30): fatal error C1083: Cannot open include file: 'SDL/SDL.h': No such file or directory
+  display.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\display.h(5): fatal error C1083: Cannot open include file: 'SDL/SDL.h': No such file or directory
+  camera.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\camera.h(4): fatal error C1083: Cannot open include file: 'GLM/glm.hpp': No such file or directory
+  Asset.cpp
+c:\users\fernanda\documents\github\trabalhogc_github\trabcg\trabcg\asset.h(5): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  Generating Code...
