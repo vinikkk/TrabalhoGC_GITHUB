@@ -9,7 +9,6 @@
 #include "texture.h"
 #include "transform.h"
 #include "camera.h"
-#include "Material.h"
 
 class Asset
 {
@@ -18,6 +17,7 @@ public:
 	~Asset();
 
 	GLuint id;
+	std::string assetName;
 
 	void SetMesh(const std::string& meshPath);
 	void SetShader(Shader* shader);
@@ -27,8 +27,7 @@ public:
 	void SetRot(glm::vec3 rot);
 	void SetScale(glm::vec3 scale);
 
-	void SetMaterial(Material& material);
-	void SetMaterial(std::vector<Material>& MaterialList);
+	void SetMaterial(std::string diffPath, std::string specPath);
 
 	void Draw(const Camera& camera);
 
@@ -36,7 +35,8 @@ protected:
 private:
 	Mesh* m_mesh;
 	Shader* m_shader;
-	Material* m_material;
+	Texture* m_diffuse;
+	Texture* m_specular;
 	Transform m_transform;
 };
 

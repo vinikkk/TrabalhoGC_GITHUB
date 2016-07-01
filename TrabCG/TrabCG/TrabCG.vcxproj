@@ -85,7 +85,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;glew32s.lib;SOIL.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;glew32s.lib;SOIL.lib;SDL2.lib;libnoise.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -135,10 +135,12 @@
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="mesh.cpp" />
+    <ClCompile Include="noiseutils.cpp" />
     <ClCompile Include="obj_loader.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="stb_image.c" />
     <ClCompile Include="texture.cpp" />
+    <ClCompile Include="TextureGenerator.cpp" />
     <ClCompile Include="transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,10 +150,12 @@
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="mesh.h" />
+    <ClInclude Include="noiseutils.h" />
     <ClInclude Include="obj_loader.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="texture.h" />
+    <ClInclude Include="TextureGenerator.h" />
     <ClInclude Include="transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

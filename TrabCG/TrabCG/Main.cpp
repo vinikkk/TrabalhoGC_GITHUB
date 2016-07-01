@@ -9,10 +9,15 @@ TODO: Implement the option of calculate the mesh normals, ACEPT mesh withou norm
 */
 
 #include <iostream>
+#include <NOISE/noise.h>
+#include "noiseutils.h"
 #include <GL/glew.h>
 #include "display.h"
 #include "shader.h"
 #include "Manager.h"
+#include "TextureGenerator.h"
+
+using namespace noise;
 
 static const int DISPLAY_WIDTH = 800;
 static const int DISPLAY_HEIGHT = 600;
@@ -23,31 +28,16 @@ int main(int argc, char** argv)
 	Display display(DISPLAY_WIDTH, DISPLAY_HEIGHT, "OpenGL");
 
 	Shader shader("../res/basicShader");
-	Camera camera(glm::vec3(0,0,-3), 70.0f, (float)DISPLAY_WIDTH/(float)DISPLAY_HEIGHT, 0.01f, 1000.0f);
+	Camera camera(glm::vec3(0,1,-10), 70.0f, (float)DISPLAY_WIDTH/(float)DISPLAY_HEIGHT, 0.01f, 1000.0f);
 
 	Manager manager;
 	manager.CreateObject("../res/cube.obj", "../res/box.jpg", "../res/box.jpg", &shader);
-	manager.CreateObject("../res/cube.obj", "../res/noTexture.png", "../res/noTexture.png", &shader);
+	manager.ObjectList[0].SetPos(glm::vec3(0, 0, 0));
+	manager.CreateObject("../res/cube.obj", "../res/bricks.jpg", "../res/bricks.jpg", &shader);
+	//manager.CreateObject("../res/cube.obj", "../res/noTexture.png", "../res/noTexture.png", &shader);
 
-
-	/*Asset a, b;
-	a.SetMesh("../res/cube.obj");
-	a.SetShader(&shader);
-
-	Material m, n;
-	m.SetDiffuse("../res/box.jpg");
-	m.SetSpecular("../res/box.jpg");
-
-	a.SetMaterial(m);
-
-	b.SetMesh("../res/cube.obj");
-	b.SetShader(&shader);
-
-	n.SetDiffuse("../res/noTexture.png");
-	n.SetSpecular("../res/noTexture.png");
-
-	b.SetMaterial(n);*/
-
+	TextureGenerator tg;
+	tg.GenerateTexture();
 
 	SDL_Event e;
 	bool isRunning = true;
@@ -56,8 +46,48 @@ int main(int argc, char** argv)
 	{
 		while (SDL_PollEvent(&e))
 		{
-			if (e.type == SDL_QUIT)
+			switch (e.type) {
+			case SDL_KEYDOWN:
+				//Key Press
+				switch (e.key.keysym.sym) {
+				case SDLK_1:
+					printf("1");
+					manager.SetRandomMaterial(0);
+					break;
+				case SDLK_2:
+					printf("2");
+					manager.SetRandomMaterial(1);
+					break;
+				case SDLK_3:
+					printf("3");
+					manager.SetRandomMaterial(2);
+					break;
+				case SDLK_4:
+					printf("4");
+					manager.SetRandomMaterial(3);
+					break;
+				case SDLK_5:
+					printf("5");
+					manager.SetRandomMaterial(4);
+					break;
+
+				case SDLK_ESCAPE:
+					isRunning = false;
+					break;
+				default:
+					break;
+				}
+				break;
+
+			case SDL_KEYUP:
+				//Key Release
+				break;
+			case SDL_QUIT:
 				isRunning = false;
+				break;
+			default:
+				break;
+			}				
 		}
 
 		display.Clear(0.2f, 0.5f, 0.0f, 1.0f);

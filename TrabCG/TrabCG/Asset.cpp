@@ -11,6 +11,10 @@ Asset::~Asset()
 
 void Asset::SetMesh(const std::string& meshPath)
 {
+	std::string name = meshPath.substr(meshPath.find_last_of('/') + 1, meshPath.find_last_of('.') - 1);
+
+	std::cout << name;
+
 	this->m_mesh = new Mesh(meshPath);
 }
 
@@ -34,14 +38,10 @@ void Asset::SetScale(glm::vec3 scale)
 	this->m_transform.SetScale(scale);
 }
 
-void Asset::SetMaterial(Material& material)
+void Asset::SetMaterial(std::string diffPath, std::string specPath)
 {
-	this->m_material = &material;
-}
-
-void Asset::SetMaterial(std::vector<Material>& MaterialList)
-{
-	this->m_material = &MaterialList[this->id];
+	m_diffuse = new Texture(diffPath);
+	m_specular = new Texture(specPath);
 }
 
 void Asset::Draw(const Camera& camera)
@@ -49,8 +49,8 @@ void Asset::Draw(const Camera& camera)
 	//this->m_shader->Bind();
 
 	//Bind material
-	this->m_material->diffuse->Bind(0, m_shader);
-	this->m_material->specular->Bind(1, m_shader);
+	this->m_diffuse->Bind(0, m_shader);
+	this->m_specular->Bind(1, m_shader);
 
 	//glUniform1f(glGetUniformLocation(m_shader->Program(), "material.shininess"), m_material->shininess);
 
@@ -58,6 +58,6 @@ void Asset::Draw(const Camera& camera)
 	this->m_mesh->Draw();
 
 	//Unbind Material
-	this->m_material->diffuse->Unbind();
-	this->m_material->specular->Unbind();
+	this->m_diffuse->Unbind();
+	this->m_specular->Unbind();
 }
